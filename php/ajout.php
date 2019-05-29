@@ -3,13 +3,18 @@
     include "connection.php";
     //appel fonction
     $base =connect();
-    $req="INSERT INTO rendezvous SELECT * FROM demande WHERE id_demande=".$_GET['id'];
+    $id=$_GET["id"];
+    $req="INSERT INTO rendezvous (date_rv,name,id_urv) SELECT date_d,name,id_u FROM demande WHERE id_demande='".$_GET["id"]."'";
     $result =$base->query($req);
     $resp= $base->exec($req) ;
+    $req="DELETE FROM demande WHERE id_demande='".$_GET['id']."'";
+    $result =$base->query($req);
+    $resp2= $base->exec($req) ;
     if($resp==1){
-        echo "donnees jawha behi";
+        header("Location: sec.php");
     }
     else{
         echo"bara thabet fel code"; 
     }
+
 ?>

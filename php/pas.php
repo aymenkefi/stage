@@ -14,9 +14,10 @@ while($user = $result->fetchObject()){
 ?>
 <html>
     <head>
-
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     </head>
     <body>
+    <a href="../html/home.html" align="right"><button class="btn btn-danger">deconnecter</button></a>
         <form name="DemandeForm" method="GET" action="demande.php" >
         <table align="center" >
             <tr>
@@ -38,5 +39,30 @@ while($user = $result->fetchObject()){
             </tr>
         </table>
         </form>
+        <?php
+
+
+    $req="SELECT * from rendezvous where id_urv=".$_SESSION['id'];
+    $result =$base->query($req);
+    ?>
+<br><br>
+<center> <h3>Vos Rendez-vous  </h3> </center> <br>
+<table class="table table-dark" >
+    <thead>
+        <tr><th>Nom</th><th>date</th></tr>
+    </thead>
+    
+    <tbody >    
+            <?php
+            while($rv = $result->fetchObject()){
+            ?>
+        <tr>
+            <td><?php echo $rv->name ?></td>
+            <td><?php echo $rv->date_rv ?></td>
+        
+       </tr>
+        <?php }?>
+    </tbody>
+</table>
     </body>
 </html>

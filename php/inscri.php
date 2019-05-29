@@ -19,6 +19,8 @@ $req="INSERT INTO users (fname,lname,phone,email, pass) VALUES ('$f','$l',$p,'$e
 $resp= $base->exec($req) ;
 if($resp==1){
     echo "donnees jawha behi";
+    header("Location: ../html/home.html");
+
 }
 else{
     echo"bara thabet fel code"; 

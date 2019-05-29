@@ -6,7 +6,7 @@ session_start();
 $base =connect();
 $req="SELECT * from users";
 $result =$base->query($req);
-$i=-1;
+$i=0;
 
 $e=$_GET['email'];
 $mdp=$_GET['password'];
@@ -27,7 +27,7 @@ if( $user->email==$e && $user->pass==$mdp)
     $_SESSION['fn']=$user->fname;
     $_SESSION['ln']=$user->lname;
 }
-else{ $i=0;}
+
 }
 }
 
