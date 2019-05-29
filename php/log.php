@@ -2,6 +2,7 @@
 //include
 include "connection.php";
 //appel fonction
+session_start();
 $base =connect();
 $req="SELECT * from users";
 $result =$base->query($req);
@@ -14,8 +15,7 @@ if( $e=="aymenkefi1919@gmail.com" && $mdp=="0000")
   header("Location: doct.php");
 }
 
-else if($e=="blabla@gmail.com" && $mdp=="1234")
-{
+else if($e=="blabla@gmail.com" && $mdp=="1234"){
     header("Location: sec.php");
 }
 else {
@@ -23,6 +23,9 @@ while($user = $result->fetchObject()){
 if( $user->email==$e && $user->pass==$mdp)
 {
     $i=1;
+    $_SESSION['id']=$user->ID;
+    $_SESSION['fn']=$user->fname;
+    $_SESSION['ln']=$user->lname;
 }
 else{ $i=0;}
 }
@@ -30,7 +33,10 @@ else{ $i=0;}
 
 if($i==1)
 {
-    echo "compte mawjoud";
+   header("Location: pas.php");
 }
-else { echo "compte mech mawjoud";}
+else { 
+    echo "compte mech mawjoud";
+}
+
 ?>
